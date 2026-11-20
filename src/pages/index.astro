@@ -1,50 +1,448 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+const profile = {
+  name: "Damian Pilny",
+  monogram: "DP",
+  role: "Embedded Software Engineer · Co-Founder @ KoPilTech",
+  location: "Gliwice / Katowice, Polska",
+  summary:
+    "Inżynier systemów wbudowanych i energoelektroniki. Projektuję deterministyczne oprogramowanie dla mikrokontrolerów ARM (BMS, RTOS, TrustZone) oraz rozwijam własne urządzenia pomiarowe dla energetyki — od architektury po wdrożenie.",
+  links: {
+    linkedin: "https://www.linkedin.com/in/TWOJ-LINKEDIN/",
+    github: "https://github.com/TWOJ-GITHUB",
+    substack: "https://TWOJ-SUBSTACK.substack.com",
+    company: "https://kopiltech.pl",
+    email: "mailto:kontakt@kopiltech.pl",
+  },
+};
+
+const expertise = [
+  {
+    area: "Embedded & RTOS",
+    items: [
+      "STM32 (Cortex-M33 / M4), bare-metal, Embedded C / C++",
+      "Azure RTOS (ThreadX), FreeRTOS, architektura deterministyczna",
+      "MISRA C, testy jednostkowe (Ceedling / Unity / CMock), CI/CD",
+    ],
+  },
+  {
+    area: "Security & Bootloaders",
+    items: [
+      "Arm TrustZone (Secure / Non-Secure, SAU, GTZC)",
+      "MCUboot / SBSFU, bezpieczne aktualizacje OTA (dual-bank)",
+      "UDS (ISO 14229), przygotowanie pod EU CRA i Functional Safety",
+    ],
+  },
+  {
+    area: "BMS & Energoelektronika",
+    items: [
+      "Architektura BMS (LFP), sterowniki AFE (TI BQ76952, BQ34Z100)",
+      "Algorytmy SoC/SoH, zabezpieczenia wielopoziomowe, praca równoległa",
+      "Komunikacja przemysłowa: CAN, CANopen (LSS), SMBus, I2C, SPI",
+    ],
+  },
+];
+
+const experience = [
+  {
+    period: "Obecnie",
+    title: "Co-Founder & Członek Zarządu — KoPilTech Sp. z o.o.",
+    desc: "Budowa urządzeń pomiarowych i systemów zasilania R&D. Flagowy produkt: PortableGrid ONE (bateryjne źródło AC dla serwisu liczników energii) — 1. miejsce w VI edycji Kopalni Startupów w Katowicach.",
+  },
+  {
+    period: "2022 — obecnie",
+    title: "Embedded Software Engineer (R&D) — EMBS Sp. z o.o.",
+    desc: "Rozwój oprogramowania systemów wbudowanych i architektur BMS na platformach STM32, wdrożenia komunikacji CANopen/UDS oraz automatyzacja weryfikacji kodu.",
+  },
+  {
+    period: "2020 — 2023",
+    title: "Embedded Software Developer — ENTE Sp. z o.o.",
+    desc: "Tworzenie i testowanie oprogramowania wbudowanego w projektach R&D dla elektroniki przemysłowej i kolejowej.",
+  },
+  {
+    period: "2016 — 2021",
+    title: "Politechnika Śląska & praktyka w energoelektronice",
+    desc: "mgr inż. Mechatronika, robotyka i automatyka (Systemy Pomiarowe i Informacyjne) oraz doświadczenie produkcyjne w obszarze energoelektroniki (ENEL-PC).",
+  },
+];
 ---
 
 <!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
-	</body>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{profile.name} — Embedded Software Engineer &amp; Co-Founder</title>
+    <meta name="description" content={profile.summary} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="topbar">
+        <span class="monogram">{profile.monogram}</span>
+        <nav class="nav">
+          <a href="#kompetencje">Kompetencje</a>
+          <a href="#doswiadczenie">Doświadczenie</a>
+          <a href="#publikacje">Inżynier Myśli</a>
+          <a href={profile.links.linkedin} target="_blank" rel="noopener">LinkedIn ↗</a>
+        </nav>
+      </header>
+
+      <main>
+        <!-- HERO -->
+        <section class="hero">
+          <p class="mono badge">● {profile.location}</p>
+          <h1>{profile.name}</h1>
+          <p class="role">{profile.role}</p>
+          <p class="summary">{profile.summary}</p>
+
+          <div class="cta-row">
+            <a class="btn primary" href={profile.links.linkedin} target="_blank" rel="noopener">
+              LinkedIn ↗
+            </a>
+            <a class="btn" href={profile.links.company} target="_blank" rel="noopener">
+              KoPilTech ↗
+            </a>
+            <a class="btn" href={profile.links.substack} target="_blank" rel="noopener">
+              Newsletter: Inżynier Myśli ↗
+            </a>
+            <a class="btn" href={profile.links.github} target="_blank" rel="noopener">
+              GitHub ↗
+            </a>
+          </div>
+        </section>
+
+        <!-- KOMPETENCJE -->
+        <section id="kompetencje" class="section">
+          <p class="mono section-label">01 / SPECJALIZACJA TECHNICZNA</p>
+          <div class="grid-3">
+            {expertise.map((block) => (
+              <article class="card">
+                <h2>{block.area}</h2>
+                <ul>
+                  {block.items.map((item) => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <!-- DOŚWIADCZENIE -->
+        <section id="doswiadczenie" class="section">
+          <p class="mono section-label">02 / DOŚWIADCZENIE I PROJEKTY</p>
+          <div class="timeline">
+            {experience.map((item) => (
+              <article class="timeline-item">
+                <span class="mono period">{item.period}</span>
+                <div>
+                  <h3>{item.title}</h3>
+                  <p>{item.desc}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <!-- SUBSTACK / PISANIE -->
+        <section id="publikacje" class="section">
+          <p class="mono section-label">03 / PISANIE</p>
+          <div class="highlight-box">
+            <div>
+              <h2>Inżynier Myśli</h2>
+              <p>
+                Newsletter o inżynierii systemów, budowaniu produktów sprzętowych,
+                stoickim przywództwie i dyscyplinie operacyjnej.
+              </p>
+            </div>
+            <a class="btn primary" href={profile.links.substack} target="_blank" rel="noopener">
+              Czytaj na Substack ↗
+            </a>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <span class="mono">© {new Date().getFullYear()} {profile.name}</span>
+        <div class="footer-links mono">
+          <a href={profile.links.email}>kontakt@kopiltech.pl</a>
+          <span>·</span>
+          <a href={profile.links.company} target="_blank" rel="noopener">kopiltech.pl</a>
+        </div>
+      </footer>
+    </div>
+  </body>
 </html>
+
+<style>
+  :root {
+    --bg: #09090b;
+    --surface: #111114;
+    --border: #27272a;
+    --text: #f4f4f5;
+    --muted: #a1a1aa;
+    --accent: #34d399;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Inter", system-ui, sans-serif;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .mono {
+    font-family: "JetBrains Mono", monospace;
+  }
+
+  .wrapper {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .monogram {
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 0.3rem 0.55rem;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    letter-spacing: 0.08em;
+  }
+
+  .nav {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 0.875rem;
+  }
+
+  .nav a {
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .nav a:hover {
+    color: var(--text);
+  }
+
+  .hero {
+    padding: 4.5rem 0 3.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .badge {
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  h1 {
+    font-size: clamp(2.25rem, 5vw, 3.25rem);
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+
+  .role {
+    margin-top: 0.75rem;
+    font-size: 1.1rem;
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  .summary {
+    margin-top: 1.5rem;
+    max-width: 65ch;
+    line-height: 1.65;
+    color: #d4d4d8;
+  }
+
+  .cta-row {
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 0.65rem 1.15rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    color: var(--text);
+    background: var(--surface);
+    transition: border-color 0.15s, background 0.15s;
+  }
+
+  .btn:hover {
+    border-color: var(--muted);
+  }
+
+  .btn.primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #09090b;
+    font-weight: 600;
+  }
+
+  .btn.primary:hover {
+    background: #6ee7b7;
+    border-color: #6ee7b7;
+  }
+
+  .section {
+    padding: 3.5rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-label {
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    margin-bottom: 1.5rem;
+  }
+
+  .grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+  }
+
+  .card h2 {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: var(--text);
+  }
+
+  .card ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--muted);
+  }
+
+  .card li::before {
+    content: "— ";
+    color: var(--accent);
+  }
+
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 1.25rem;
+    align-items: baseline;
+  }
+
+  .period {
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+
+  .timeline-item h3 {
+    font-size: 1rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .timeline-item p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+
+  .highlight-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 1.75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .highlight-box h2 {
+    font-size: 1.2rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .highlight-box p {
+    font-size: 0.9rem;
+    color: var(--muted);
+    max-width: 52ch;
+    line-height: 1.55;
+  }
+
+  .footer {
+    padding: 2rem 0 3rem;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .footer a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+
+  .footer a:hover {
+    color: var(--text);
+  }
+
+  @media (max-width: 640px) {
+    .nav {
+      display: none;
+    }
+    .timeline-item {
+      grid-template-columns: 1fr;
+      gap: 0.35rem;
+    }
+  }
+</style>
